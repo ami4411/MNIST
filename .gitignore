@@ -3,3 +3,5 @@ LeNet/myEnv
 LeNet/basic-cnn-lenet.ipynb
 LeNet/logfile.log
 LeNet/modelling.log
+LeNet/modelling/model_ori.py
+LeNet/inference/loadModel_ori.py

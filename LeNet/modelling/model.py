@@ -53,7 +53,7 @@ class LeNet:
 			self.save_result(lenetRelu)
 			print("Modelling: finish")
 		except:
-
+			pass
 		# return() # procedural func
 
 class AlexNet:

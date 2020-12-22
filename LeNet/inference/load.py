@@ -1,17 +1,18 @@
 import tensorflow as tf
 from tensorflow import keras
-from sklearn.datasets import load_digits
-from skimage.transform import resize
 
 import numpy as np
+import h5py
 
 import os
 import sys
+import datetime
 
 class Predict:
 
-	def __init__(self, test):
+	def __init__(self, test, dt=None):
 		self.test = test
+		self.dt = dt
 
 	@staticmethod
 	def get_model():
@@ -35,33 +36,37 @@ class Predict:
 		model = keras.models.load_model(pathSavedModel)
 
 		return model
+
+	@staticmethod
+	def save_pred(result):
+
+		now = datetime.datetime.now()
+		time = now.strftime("%H%M%S")
+		date = now.strftime("%Y%m%d")
+
+		os.chdir("../../")
+		path = os.getcwd()
+
+		dir_file = os.path.join(path+"/output", date)
+		if not os.path.isdir(dir_file):
+			os.mkdir(dir_file)
+		
+		os.chdir(dir_file)
+
+		with h5py.File(time+'.h5', 'w') as file:
+			file.create_dataset("Result", data=result)
 	
 	def predict(self):
 		model = self.get_model()
 		predictions = model.predict(self.test)
 
 		result = [np.argmax(pred) for pred in predictions]
+		self.save_pred(result)
+
+		if isinstance(self.dt, np.ndarray):
+			_, acc = model.evaluate(self.test, self.dt, verbose=0)
+			print('Accuracy> %.3f' % (acc * 100.0))
 
 		return result
 
 
-class Data:
-
-	@staticmethod
-	def test_data():
-		(train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
-
-		digit = load_digits()
-
-		digit = digit.images
-		digit = digit[0] #test img
-		digit = resize(digit, (28, 28))
-		digit = digit.reshape(1, 28, 28)
-		digit = tf.expand_dims(digit, 3)
-
-		res = Predict(digit)
-		res.predict()
-
-if __name__ == '__main__':
-	data = Data()
-	data.test_data()

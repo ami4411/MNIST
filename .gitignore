@@ -1,7 +1,13 @@
+myEnv
 LeNet/.ipynb_checkpoints
-LeNet/myEnv
 LeNet/basic-cnn-lenet.ipynb
 LeNet/logfile.log
 LeNet/modelling.log
 LeNet/modelling/model_ori.py
 LeNet/inference/loadModel_ori.py
+LeNet/inference/Untitled.ipynb
+LeNet/output/20201223
+LeNet/serving
+LeNet/test
+LeNet/__pycache__
+LeNet/logfile.log

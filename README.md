@@ -65,6 +65,6 @@ Dataset
 >http://yann.lecun.com/exdb/mnist/ 
 
 ## License
-A short snippet describing the license (MIT, Apache etc)
+https://github.com/ami-sm/cnn-models/blob/master/LICENSE
 
-MIT © [Yourname]()
+MIT © AMI-SM()

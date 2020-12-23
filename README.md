@@ -67,4 +67,4 @@ Dataset
 ## License
 https://github.com/ami-sm/cnn-models/blob/master/LICENSE
 
-MIT © AMI-SM()
+MIT © AMI-SM

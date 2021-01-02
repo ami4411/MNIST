@@ -10,7 +10,8 @@ import logging as log
 
 
 class LeNet:
-	log.basicConfig(level=log.ERROR, filename="modelling.log", filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	log.basicConfig(level=log.NOTSET, filename="modelling.log", filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	sys.stdout.write = log.info
 
 	def __init__(data, iterable=(), **datasets): 
 		data.__dict__.update(iterable, **datasets)
@@ -54,22 +55,6 @@ class LeNet:
 			print("Modelling: finish")
 		except:
 			pass
-		# return() # procedural func
-
-class AlexNet:
-	pass
-
-class GoogLeNet:
-	pass
-
-class VGGNet:
-	pass
-
-class ResNet:
-	pass
-
-class DenseNet:
-	pass
 
 def main():
 	(train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()

@@ -27,6 +27,6 @@ def select_process(chosen):
 	fresult = Data.process_data(clean_data[chosen])
 	pred = Predict(fresult, label)
 	fpred = pred.predict()
-	print(fpred)
+	# print(fpred)
 
 	return fpred

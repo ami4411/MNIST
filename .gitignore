@@ -1,9 +1,11 @@
 myEnv
 !**/__pycache__/
+req.txt
 LeNet/.ipynb_checkpoints
 LeNet/basic-cnn-lenet.ipynb
 LeNet/logfile.log
 LeNet/modelling.log
+LeNet/all.log
 LeNet/modelling/model_ori.py
 LeNet/inference/loadModel_ori.py
 LeNet/inference/Untitled.ipynb
@@ -12,4 +14,4 @@ LeNet/serving
 LeNet/test
 LeNet/__pycache__
 LeNet/logfile.log
-req.txt
+LeNet/saved

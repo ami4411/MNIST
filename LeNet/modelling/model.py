@@ -4,19 +4,19 @@ from tensorflow import keras
 import numpy as np
 import datetime
 
-import os
 import sys
-import logging as log
+import os
+from logger.log import Logger
 
+run = "dev"
+log = Logger(run).log()
 
 class LeNet:
-	log.basicConfig(level=log.NOTSET, filename="modelling.log", filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-	sys.stdout.write = log.info
-
 	def __init__(data, iterable=(), **datasets): 
 		data.__dict__.update(iterable, **datasets)
 
 	def save_result(self, model):
+		log.info("Saving...")
 		now = datetime.datetime.now()
 		time = now.strftime("%Y%m%d%H%M%S")
 
@@ -30,13 +30,14 @@ class LeNet:
 
 		try:
 			model.save(dirResult)
-			print("Model is saved")
+			log.info("Model is saved")
 		except Exception as e:
 			log.error(f"{nameModel} models are not saved!", exc_info=True)
 
 		 # procedural func
 
 	def train_model(self):
+		log.info("Training...")
 		lenetRelu = keras.models.Sequential([
 		    keras.layers.Conv2D(6, kernel_size=5, strides=1,  activation='relu', input_shape=self.train_x[0].shape, padding='same'), 
 		    keras.layers.AveragePooling2D(), 
@@ -52,7 +53,7 @@ class LeNet:
 
 		try:
 			self.save_result(lenetRelu)
-			print("Modelling: finish")
+			log.info("Modelling: finish")
 		except:
 			pass
 

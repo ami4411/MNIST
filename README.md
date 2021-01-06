@@ -10,7 +10,7 @@ https://www.python.org/dev/peps/pep-0008/
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 ## Packages
-The most important packages are:
+Important packages:
 * tensorflow==2.1.0
 * numpy==1.19.3
 * h5py==2.10.0

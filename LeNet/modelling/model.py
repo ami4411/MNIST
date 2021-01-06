@@ -6,10 +6,19 @@ import datetime
 
 import sys
 import os
-from logger.log import Logger
-
-run = "dev"
-log = Logger(run).log()
+# from logger.log import Logger
+try:
+	from logger.log import Logger
+	# import logger 
+	# x = Logger()
+	# x.log("dev")
+except Exception as e:
+	sys.path.append(os.getcwd())
+	# print(e)
+	# print(sys.path)
+	from logger.log import Logger
+from inputData import data
+from inputData.process_data import *
 
 class LeNet:
 	def __init__(data, iterable=(), **datasets): 
@@ -58,14 +67,20 @@ class LeNet:
 			pass
 
 def main():
-	(train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
-	train_x = train_x / 255.0 
-	test_x = test_x / 255.0 
-	train_x = tf.expand_dims(train_x, 3)
-	test_x = tf.expand_dims(test_x, 3)
-	val_x = train_x[:5000]
-	val_y = train_y[:5000]
-	
+	train_x, train_y, test_x, test_y = data.get_data(2)
+
+	def norm_process():		
+		nonlocal train_x, test_x
+
+		result = list()
+		for val in [train_x, test_x]:
+			result.append(Data.process_data(Data.normalize_data(val)))
+
+		train_x, test_x = result
+
+	norm_process()
+	val_x, val_y  = train_x[:5000], train_y[:5000]
+
 	model = LeNet(train_x=train_x, test_x=test_x, train_y=train_y, test_y=test_y, val_x=val_x, val_y=val_y)
 	model.train_model()
 
@@ -73,4 +88,6 @@ def main():
 
 
 if __name__ == '__main__':
+	run = "dev"
+	log = Logger(run).log()
 	main()

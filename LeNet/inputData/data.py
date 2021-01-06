@@ -6,17 +6,21 @@ import os
 from inference.load import *
 from inputData.process_data import *
 
-def get_data():
+def get_data(x):
 	"""Get data from source and return raw data."""
 	
 	(train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
 	test_y = None
+	if (x == 1):
+		result = [test_x, test_y]
+	elif (x == 2):
+		result = [train_x, train_y, test_x, test_y]
 
-	return test_x, test_y
+	return result
 
 def select_process(chosen):
 
-	data, label = get_data()
+	data, label = get_data(1)
 
 	clean_data = { 
 	"1": Data.normalize_data(data),

@@ -6,17 +6,8 @@ import datetime
 
 import sys
 import os
-# from logger.log import Logger
-try:
-	from logger.log import Logger
-	# import logger 
-	# x = Logger()
-	# x.log("dev")
-except Exception as e:
-	sys.path.append(os.getcwd())
-	# print(e)
-	# print(sys.path)
-	from logger.log import Logger
+from logger.log import Logger
+
 from inputData import data
 from inputData.process_data import *
 

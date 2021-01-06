@@ -1,5 +1,6 @@
 myEnv
 !**/__pycache__/
+**/__pycache__/*
 req.txt
 LeNet/.ipynb_checkpoints
 LeNet/basic-cnn-lenet.ipynb
@@ -15,3 +16,4 @@ LeNet/test
 LeNet/__pycache__
 LeNet/logfile.log
 LeNet/saved
+LeNet/output
